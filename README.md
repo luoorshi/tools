@@ -25,3 +25,26 @@ index 0c71356..8670a34 100644
 ~~~
 
 另外，只有全志H5平台才编译build-scripts、arm-trusted-firmware。所以arm-trusted-firmware的编译工具也是使用64位的gcc。
+
+该仓库需要使用特殊指令才能正常拉取代码如果发现本仓库不包含其他文件或者文件大小太小，请按照以下步骤执行
+### 1 安装工具
+~~~ shell
+sudo apt update
+sudo apt install git-lfs
+~~~
+
+### 2 git安装
+
+~~~ shell
+git lfs install
+~~~
+
+### 3 再次同步代码
+
+~~~ shell
+#如果使用repo同步的需要在repo所在的地方先执行命令
+repo sync -c
+
+git lfs pull
+~~~
+
