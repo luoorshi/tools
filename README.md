@@ -50,6 +50,16 @@ git lfs pull
 
 ### 记录一下rootfs的编辑方式
 
+```shell
+# 如果 sudo  su报错
+
+chown root:root /etc/sudo.conf /etc/sudoers /usr/bin/sudo
+chown -R root:root /etc/sudoers.d/
+chmod 644 /etc/sudo.conf
+chmod 440 /etc/sudoers
+chmod 4755 /usr/bin/sudo
+```
+
 ``` shell
 sudo cp /usr/bin/qemu-aarch64-static rootfs-arm64/usr/bin/
 sudo cp /etc/resolv.conf rootfs-arm64/etc/resolv.conf
@@ -75,6 +85,9 @@ apt install -y parted fdisk gdisk e2fsprogs dosfstools tree htop lsof psmisc
 
 apt install -y build-essential git cmake
 
+# 添加一些工具
+apt install -y kmod cgroup-tools alsa-utils
+
 locale-gen en_US.UTF-8
 
 passwd root
@@ -86,6 +99,10 @@ adduser lois
 密码：1  其他全部回车默认
 
 usermod -aG sudo lois
+
+usermod -aG video lois
+
+chmod g+rw /dev/fb0
 
 chmod 1777 /tmp
 
@@ -103,7 +120,7 @@ chmod 777 rootfs-arm64.tar.gz
 
 # H3命令
 
-sudo cp /usr/bin/qemu-aarch64-static rootfs-arm32/usr/bin/
+sudo cp /usr/bin/qemu-arm-static rootfs-arm32/usr/bin/
 sudo cp /etc/resolv.conf rootfs-arm32/etc/resolv.conf
 
 sudo mount --bind /dev rootfs-arm32/dev
@@ -127,6 +144,8 @@ apt install -y parted fdisk gdisk e2fsprogs dosfstools tree htop lsof psmisc
 
 apt install -y build-essential git cmake
 
+apt install -y kmod cgroup-tools alsa-utils
+
 locale-gen en_US.UTF-8
 
 passwd root
@@ -138,6 +157,10 @@ adduser lois
 密码：1  其他全部回车默认
 
 usermod -aG sudo lois
+
+usermod -aG video lois
+
+chmod g+rw /dev/fb0
 
 chmod 1777 /tmp
 
