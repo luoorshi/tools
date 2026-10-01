@@ -48,6 +48,14 @@ repo sync -c
 git lfs pull
 ~~~
 
+# 链接wifi
+
+~~~shell
+sudo nmcli device wifi connect "ID" password "password"
+~~~
+
+
+
 ### 记录一下rootfs的编辑方式
 
 ```shell
@@ -58,6 +66,20 @@ chown -R root:root /etc/sudoers.d/
 chmod 644 /etc/sudo.conf
 chmod 440 /etc/sudoers
 chmod 4755 /usr/bin/sudo
+
+chown root:root /bin/su
+chmod 4755 /bin/su
+
+chown root:root /etc/passwd /etc/shadow
+chmod 644 /etc/passwd
+chmod 640 /etc/shadow
+
+chown -R root:root /usr/lib/aarch64-linux-gnu/NetworkManager/
+chown -R root:root /usr/lib/arm-linux-gnueabihf/NetworkManager/
+chown -R root:root /usr/lib/NetworkManager/
+chown -R root:root /etc/NetworkManager/
+chown -R root:root /usr/lib/systemd/system/NetworkManager*.service
+
 ```
 
 ``` shell
